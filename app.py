@@ -40,6 +40,7 @@ st.markdown("""
         """, unsafe_allow_html=True)
 
     
+# button styling
 m = st.markdown("""
 <style>
 div.stButton > button:first-child {
@@ -50,8 +51,10 @@ div.stButton > button:hover {
     background-color: #6F84FF;
     color:#ffffff
     }
+</style>""", unsafe_allow_html=True)
 
-</style>""", unsafe_allow_html=True) 
+
+
 path = os.path.abspath(os.path.dirname(__file__))
 @st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True)
 def load_model():
@@ -97,16 +100,12 @@ col2.metric("Number of questions", questions-2)
 col3.metric("Optimum Elbow(option to increase)", "5")
 col4.metric("Data Source", "dataworld.com", "")
 
-
-
-st.sidebar.header('Select desired number of cluster')
+from sklearn.cluster import KMeans
 cluster_size = st.sidebar.radio("Clusters represent number of potential groupings", ([3,4,5]))
-with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
-    columns =  [i for i in dataset.columns]
-    st.write(columns[:39])
-
+kmeans = KMeans(n_clusters= cluster_size)
 x= dataset.drop(['cluster'], axis =1)
-        
+kmeans.fit_transform(x)
+
 from sklearn.preprocessing import StandardScaler
 sc= StandardScaler()
 scaled_x = sc.fit_transform(x)
@@ -117,15 +116,20 @@ from sklearn.decomposition import PCA
 pca = PCA(n_components=2)
 pca_x= pca.fit_transform(scaled_x)
 pca_x = pd.DataFrame(data = pca_x, columns=['PCA1', 'PCA2'])
-       
-from sklearn.cluster import KMeans
-    
-        
-kmeans = KMeans(n_clusters= cluster_size)
-kmeans.fit_transform(x)
-pca_x_kmeans = pd.concat([pca_x,pd.DataFrame({'clusters' : kmeans.labels_})],axis = 1)
 
-        
+
+pca_x_kmeans = pd.concat([pca_x,pd.DataFrame({'clusters' : kmeans.labels_})],axis = 1)
+survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
+
+st.download_button("Download the trained dataset",survey_cluster.to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+
+st.sidebar.header('Select desired number of cluster')
+
+with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
+    columns =  [i for i in dataset.columns]
+    st.write(columns[:39])
+
+
 def get_colors ():
     if cluster_size == 2:
         s = ['red', 'blue']
@@ -139,7 +143,7 @@ def get_colors ():
     return s
 color = get_colors()
             
-survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)       
+     
 
 
 #st.subheader('Data Explorations and visualization')
