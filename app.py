@@ -162,7 +162,7 @@ with st.container():
             
             fig, ax = plt.subplots(figsize =( 10, 5))
             model = KMeans()
-            visualizer = KElbowVisualizer(model, k=(1,15)).fit(x)
+            visualizer = KElbowVisualizer(model, k=(1,9)).fit(x)
             visualizer.show()
             return fig
         cluster_no = no_of_cluster()
