@@ -176,6 +176,9 @@ with st.container():
         report = analysis()
         st.pyplot()
         
+        st.write("Model")
+        st.write(model)
+        
         #st.write([i for i in survey_cluster])
     
 
@@ -186,7 +189,7 @@ with st.container():
         def cluster_plot ():
             fig, ax = plt.subplots(figsize =( 13, 8))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 160)
-            plt.grid(True)
+            #plt.grid()
             plt.show()
             plt.title("KMeans Cluster")
             return fig
@@ -198,7 +201,7 @@ with st.container():
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         
         def cluster_counts ():
-            fig, ax = plt.subplots(figsize =( 10, 6))
+            fig, ax = plt.subplots(figsize =( 10, 4.5))
             sns.countplot(data = survey_cluster, x = 'clusters', palette= color)
             plt.title("Count of clusters by size")
             return fig
