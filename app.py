@@ -100,7 +100,7 @@ col4.metric("Data Source", "dataworld.com", "")
 
 
 st.sidebar.header('Select desired number of cluster')
-cluster_size = st.sidebar.radio("Clusters represent number of potential groupings", ([3,4,5,6]))
+cluster_size = st.sidebar.radio("Clusters represent number of potential groupings", ([3,4,5]))
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
     columns =  [i for i in dataset.columns]
     st.write(columns[:39])
@@ -133,10 +133,9 @@ def get_colors ():
         s = ['red', 'blue','teal']
     elif cluster_size == 4:
         s= ['red', 'blue','teal','black']
-    elif cluster_size == 5:
-        s =['red', 'blue','teal','black', 'orange']
     else:
-        s =['red', 'blue','teal','black', 'orange','green']
+        s =['red', 'blue','teal','black', 'orange']
+
     return s
 color = get_colors()
             
