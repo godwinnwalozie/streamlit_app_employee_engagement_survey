@@ -213,12 +213,8 @@ with st.sidebar:
     st.write("### Godwin Nwalozie")
     dir_name = os.path.abspath(os.path.dirname(__file__))
     
-    @st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True)
-    def profile_photo():
-        file = Image.open(os.path.join(dir_name,"mazi_gunner2.jpg"))
-        st.sidebar.image(file,width=200 )
-    photo = profile_photo()
-        
+    file = Image.open(os.path.join(dir_name,"mazi_gunner2.jpg"))
+    st.sidebar.image(file,width=200 )
     # Find me links
     kaggle=' 🔍Find me on Linkedin [link](https://www.linkedin.com/in/godwinnwalozie/)'
     st.sidebar.markdown(kaggle,unsafe_allow_html=True)
