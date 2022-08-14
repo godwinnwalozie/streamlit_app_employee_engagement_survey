@@ -95,7 +95,7 @@ with st.container():
 
 st.sidebar.title('Select desired number of cluster')
 from sklearn.cluster import KMeans
-cluster_size = st.sidebar.select_slider("A cluster is a group based on characteristics or similar attributes", ([3,4,5]))
+cluster_size = st.sidebar.radio("A cluster is a group based on characteristics or similar attributes", ([3,4,5]))
 
 
 x= dataset.drop(['cluster'], axis =1)
@@ -121,13 +121,15 @@ kmeans = KMeans(n_clusters= cluster_size)
 kmeans.fit_transform(pca_scaled_x)
 pca_x_kmeans = pd.concat([pca_scaled_x,pd.DataFrame({'clusters' : kmeans.labels_})],axis = 1)
 
+survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)
+
 
 
 dataset_with_label = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
 
 
-st.sidebar.download_button("Download the training dataset (cluster label included)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
-st.sidebar.download_button("Download the trained model for predictions (joblib)", b'lgr_model',file_name = 'model.joblib')
+st.sidebar.download_button("Download the training dataset)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+st.sidebar.download_button("Download the trained model(joblib)", b'lgr_model',file_name = 'model.joblib')
 
 
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
@@ -172,13 +174,14 @@ with st.container():
         cluster_no = no_of_cluster()
         st.write(cluster_no)
         
+    
         
         st.set_option('deprecation.showPyplotGlobalUse', False)
         def analysis():
             st.write("Random generated reports")
             fig, ax = plt.subplots(figsize =(8, 10))
-            for c in pca_x_kmeans.drop(['clusters'],axis =1).sample(axis =1):
-                grid = sns.FacetGrid(data = pca_x_kmeans, col='clusters')
+            for c in survey_cluster.drop(['clusters','cluster'],axis =1).sample(axis =1):
+                grid = sns.FacetGrid(data = survey_cluster, col='clusters')
                 grid = grid.map(sns.histplot, c )
                 plt.show()
                 return fig
@@ -211,7 +214,7 @@ with st.container():
         
         def cluster_counts ():
             fig, ax = plt.subplots(figsize =( 12, 5))
-            sns.countplot(data = pca_x_kmeans, x = 'clusters', palette= color, saturation= 0.75)
+            sns.countplot(data = survey_cluster, x = 'cluster', palette= color, saturation= 0.75)
             plt.title("Count of clusters by size")
             return fig
         plot2 = cluster_counts()
