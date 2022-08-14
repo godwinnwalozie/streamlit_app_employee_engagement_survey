@@ -69,7 +69,7 @@ def load_dataset ():
 dataset = load_dataset()
 
 
-st.title(" Employee Engagement Survey - Human Resources + AI")
+st.title(" Improve Your Employee Engagement with AI - ML")
 
 # st.markdown("""
 # <style>
@@ -81,8 +81,7 @@ st.title(" Employee Engagement Survey - Human Resources + AI")
 # """, unsafe_allow_html=True)
 # st.markdown('<p class="big-font"> With Machine Learning, HR can find meanigful insightful about their employees, as opposed to relying on obsolete theories and generalizations?', 
 #     unsafe_allow_html=True)  
-
-st.info(""" ###### This Machine Learning model is built to analyze and gain insights on a number of critical issues in 6 main areas obtained from employee feedback:
+st.success(""" ###### This Machine Learning model is built to analyze and gain insights on a number of critical issues in 6 main areas obtained from employee feedback:
 (1) Career Development
 (2) Management Support
 (3) Supervision & Working Environment
@@ -93,12 +92,12 @@ st.info(""" ###### This Machine Learning model is built to analyze and gain insi
 
 dataset_len = len(dataset)
 questions = dataset.columns.value_counts().sum()
-
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Number of employee surveyed", dataset_len)
-col2.metric("Number of questions", questions-2)
-col3.metric("Clustering Algorithm", "KMeans")
-col4.metric("Model Prediction Accuracy Score", "95%", "")
+with st.container():
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Number of employee surveyed", dataset_len)
+    col2.metric("Number of questions", questions-2)
+    col3.metric("Clustering Algorithm", "KMeans")
+    col4.metric("Model Prediction Accuracy Score", "95%", "")
 
 
 st.sidebar.header('Select desired number of cluster')
@@ -162,7 +161,7 @@ with st.container():
             
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         def no_of_cluster ():
-            fig, ax = plt.subplots(figsize =( 10, 5))
+            fig, ax = plt.subplots(figsize =(8, 5))
             model = KMeans()
             visualizer = KElbowVisualizer(model, k=(1,15)).fit(x)
             visualizer.show()
@@ -173,7 +172,7 @@ with st.container():
         
         st.set_option('deprecation.showPyplotGlobalUse', False)
         def analysis():
-            fig, ax = plt.subplots(figsize =( 10, 10))
+            fig, ax = plt.subplots(figsize =(8, 10))
             for c in survey_cluster.drop(['cluster','clusters'],axis =1).sample(axis =1):
                 grid = sns.FacetGrid(data = survey_cluster, col='clusters')
                 grid = grid.map(sns.histplot, c, )
@@ -193,8 +192,8 @@ with st.container():
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         #def kmeans_plot ():
         def cluster_plot ():
-            fig, ax = plt.subplots(figsize =( 13, 8))
-            sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 160)
+            fig, ax = plt.subplots(figsize =( 10, 8))
+            sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
             #plt.grid()
             plt.show()
             plt.title("KMeans Cluster")
@@ -207,7 +206,7 @@ with st.container():
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         
         def cluster_counts ():
-            fig, ax = plt.subplots(figsize =( 10, 4.5))
+            fig, ax = plt.subplots(figsize =( 12, 4.5))
             sns.countplot(data = survey_cluster, x = 'clusters', palette= color)
             plt.title("Count of clusters by size")
             return fig
