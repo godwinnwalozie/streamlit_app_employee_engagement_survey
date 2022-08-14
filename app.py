@@ -97,7 +97,7 @@ questions = dataset.columns.value_counts().sum()
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Number of employee surveyed", dataset_len)
 col2.metric("Number of questions", questions-2)
-col3.metric("Optimum Elbow(option to increase)", "3")
+col3.metric("Optimum Elbow(option to increase)", "5")
 col4.metric("Model Prediction Accuracy Score", "95%", "")
 
 
@@ -164,7 +164,7 @@ with st.container():
         def no_of_cluster ():
             fig, ax = plt.subplots(figsize =( 10, 5))
             model = KMeans()
-            visualizer = KElbowVisualizer(model, k=(1,9)).fit(x)
+            visualizer = KElbowVisualizer(model, k=(1,15)).fit(x)
             visualizer.show()
             return fig
         cluster_no = no_of_cluster()
