@@ -123,9 +123,9 @@ pca_x = pd.DataFrame(data = pca_x, columns=['PCA1', 'PCA2'])
 pca_x_kmeans = pd.concat([pca_x,pd.DataFrame({'clusters' : kmeans.labels_})],axis = 1)
 survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
 
-model = b'model'
-st.download_button("Download the trained dataset", data =survey_cluster.to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
-st.download_button("Download the trained model for predictions (joblib)",model,file_name = 'model.joblib')
+
+st.download_button("Download the training dataset (cluster label included)", data =survey_cluster.to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+st.download_button("Download the trained model for predictions (joblib)", b'lgr_model',file_name = 'model.joblib')
 
 
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
