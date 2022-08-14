@@ -130,10 +130,10 @@ pca_x_kmeans = pd.concat([pca_scaled_x,pd.DataFrame({'clusters' : kmeans.labels_
 
 
 
-survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
+dataset_with_label = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
 
 
-st.download_button("Download the training dataset (cluster label included)", data =survey_cluster.to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+st.download_button("Download the training dataset (cluster label included)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
 st.download_button("Download the trained model for predictions (joblib)", b'lgr_model',file_name = 'model.joblib')
 
 
@@ -184,8 +184,8 @@ with st.container():
         def analysis():
             st.write("Random generated reports")
             fig, ax = plt.subplots(figsize =(8, 10))
-            for c in survey_cluster.drop(['cluster','clusters'],axis =1).sample(axis =1):
-                grid = sns.FacetGrid(data = survey_cluster, col='clusters')
+            for c in pca_x_kmeans.drop(['clusters'],axis =1).sample(axis =1):
+                grid = sns.FacetGrid(data = pca_x_kmeans, col='clusters')
                 grid = grid.map(sns.histplot, c )
                 plt.show()
                 return fig
@@ -218,7 +218,7 @@ with st.container():
         
         def cluster_counts ():
             fig, ax = plt.subplots(figsize =( 12, 5))
-            sns.countplot(data = survey_cluster, x = 'clusters', palette= color, saturation= 0.75)
+            sns.countplot(data = pca_x_kmeans, x = 'clusters', palette= color, saturation= 0.75)
             plt.title("Count of clusters by size")
             return fig
         plot2 = cluster_counts()
