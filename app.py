@@ -100,9 +100,9 @@ with st.container():
     col4.metric("Model Prediction Accuracy Score", "95%", "")
 
 
-st.sidebar.header('Select desired number of cluster')
+st.sidebar.title('Select desired number of cluster')
 from sklearn.cluster import KMeans
-cluster_size = st.sidebar.radio("Clusters represent number of potential groupings", ([3,4,5]))
+cluster_size = st.sidebar.radio("A cluster is a group based on characteristics or similar attributes", ([3,4,5]))
 kmeans = KMeans(n_clusters= cluster_size)
 x= dataset.drop(['cluster'], axis =1)
 kmeans.fit_transform(x)
@@ -221,7 +221,7 @@ with st.sidebar:
     st.write("### Godwin Nwalozie")
     dir_name = os.path.abspath(os.path.dirname(__file__))
     file = Image.open(os.path.join(dir_name,"mazi.png"))
-    st.sidebar.image(file )
+    st.sidebar.image(file,width= 200 )
     # Find me links
     kaggle=' 🔍Find me on Linkedin [link](https://www.linkedin.com/in/godwinnwalozie/)'
     st.sidebar.markdown(kaggle,unsafe_allow_html=True)
