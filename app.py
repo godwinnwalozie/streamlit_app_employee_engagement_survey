@@ -97,8 +97,8 @@ questions = dataset.columns.value_counts().sum()
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Number of employee surveyed", dataset_len)
 col2.metric("Number of questions", questions-2)
-col3.metric("Optimum Elbow(option to increase)", "5")
-col4.metric("Data Source", "dataworld.com", "")
+col3.metric("Optimum Elbow(option to increase)", "3")
+col4.metric("Model Prediction Accuracy Score", "95%", "")
 
 
 st.sidebar.header('Select desired number of cluster')
