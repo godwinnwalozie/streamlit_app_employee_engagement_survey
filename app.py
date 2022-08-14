@@ -95,7 +95,7 @@ with st.container():
 
 st.sidebar.title('Select desired number of cluster')
 from sklearn.cluster import KMeans
-cluster_size = st.sidebar.radio("A cluster is a group based on characteristics or similar attributes", ([3,4,5]))
+cluster_size = st.sidebar.select_slider("A cluster is a group based on characteristics or similar attributes", ([3,4,5]))
 
 
 x= dataset.drop(['cluster'], axis =1)
@@ -126,8 +126,8 @@ pca_x_kmeans = pd.concat([pca_scaled_x,pd.DataFrame({'clusters' : kmeans.labels_
 dataset_with_label = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
 
 
-st.download_button("Download the training dataset (cluster label included)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
-st.download_button("Download the trained model for predictions (joblib)", b'lgr_model',file_name = 'model.joblib')
+st.sidebar.download_button("Download the training dataset (cluster label included)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+st.sidebar.download_button("Download the trained model for predictions (joblib)", b'lgr_model',file_name = 'model.joblib')
 
 
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
@@ -224,8 +224,8 @@ with st.container():
 with st.sidebar:
     st.write("### Godwin Nwalozie")
     dir_name = os.path.abspath(os.path.dirname(__file__))
-    file = Image.open(os.path.join(dir_name,"mazi.png"))
-    st.sidebar.image(file,width= 200 )
+    # file = Image.open(os.path.join(dir_name,"mazi.png"))
+    # st.sidebar.image(file,width= 300 )
     # Find me links
     kaggle=' 🔍Find me on Linkedin [link](https://www.linkedin.com/in/godwinnwalozie/)'
     st.sidebar.markdown(kaggle,unsafe_allow_html=True)
