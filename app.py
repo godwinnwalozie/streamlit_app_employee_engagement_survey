@@ -95,7 +95,7 @@ dataset_len = len(dataset)
 questions = dataset.columns.value_counts().sum()
 
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("# of employee surveyed", dataset_len)
+col1.metric("Number of employee surveyed", dataset_len)
 col2.metric("Number of questions", questions-2)
 col3.metric("Optimum Elbow(option to increase)", "5")
 col4.metric("Data Source", "dataworld.com", "")
