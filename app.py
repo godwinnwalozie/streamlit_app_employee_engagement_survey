@@ -69,7 +69,7 @@ def load_dataset ():
 dataset = load_dataset()
 
 
-st.header(" Employee Engagement Survey - Human Resources + AI")
+st.title(" Employee Engagement Survey - Human Resources + AI")
 
 # st.markdown("""
 # <style>
@@ -100,6 +100,8 @@ col2.metric("Number of questions", questions-2)
 col3.metric("Optimum Elbow(option to increase)", "5")
 col4.metric("Data Source", "dataworld.com", "")
 
+
+st.sidebar.header('Select desired number of cluster')
 from sklearn.cluster import KMeans
 cluster_size = st.sidebar.radio("Clusters represent number of potential groupings", ([3,4,5]))
 kmeans = KMeans(n_clusters= cluster_size)
@@ -123,7 +125,7 @@ survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})
 
 st.download_button("Download the trained dataset",survey_cluster.to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
 
-st.sidebar.header('Select desired number of cluster')
+
 
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
     columns =  [i for i in dataset.columns]
@@ -159,7 +161,6 @@ with st.container():
             
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         def no_of_cluster ():
-            
             fig, ax = plt.subplots(figsize =( 10, 5))
             model = KMeans()
             visualizer = KElbowVisualizer(model, k=(1,9)).fit(x)
