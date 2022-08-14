@@ -26,7 +26,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
         <style>
                 .css-18e3th9 {
-                    padding-top: 0rem;
+                    padding-top: 2rem;
                     padding-bottom: 0.3rem;
                 }
                 .css-hxt7ib {
@@ -70,6 +70,7 @@ dataset = load_dataset()
 
 
 st.header(" ¤(☆✭)¤ 𝐈𝐦𝐩𝐫𝐨𝐯𝐢𝐧𝐠 𝐄𝐦𝐩𝐥𝐨𝐲𝐞𝐞 𝐄𝐧𝐠𝐚𝐠𝐞𝐦𝐞𝐦𝐞𝐧𝐭 𝐰𝐢𝐭𝐡 𝐀𝐈-𝐌𝐋 ¤(✭☆)¤")
+st.write(" ##### Machine Learning Model : by Godwin Nwalozie")
 
 # st.markdown("""
 # <style>
@@ -163,7 +164,8 @@ with st.container():
         #st.markdown(""" #####  Metric Selection""") 
         
         st.markdown("")
-            
+        
+        st.write(" ##### YellowBrick - KElbowVisualizer")  
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
         def no_of_cluster ():
             fig, ax = plt.subplots(figsize =(8, 5))
@@ -178,7 +180,7 @@ with st.container():
         
         st.set_option('deprecation.showPyplotGlobalUse', False)
         def analysis():
-            st.write("Random generated reports")
+            st.write(" ##### Random generated reports - based on selected cluster size")
             fig, ax = plt.subplots(figsize =(8, 10))
             for c in survey_cluster.drop(['clusters','cluster'],axis =1).sample(axis =1):
                 grid = sns.FacetGrid(data = survey_cluster, col='clusters')
@@ -194,11 +196,10 @@ with st.container():
     
 
     with col2:            
-
+        st.markdown("")
+        st.write(" ##### KMeans Cluster") 
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
-        
         def cluster_plot ():
-            
             fig, ax = plt.subplots(figsize =( 10, 8))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
             #plt.grid()
