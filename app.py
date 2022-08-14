@@ -69,7 +69,7 @@ def load_dataset ():
 dataset = load_dataset()
 
 
-st.title(" Improve Your Employee Engagement with AI - ML")
+st.header(" ¤(☆✭)¤ 𝐈𝐦𝐩𝐫𝐨𝐯𝐢𝐧𝐠 𝐄𝐦𝐩𝐥𝐨𝐲𝐞𝐞 𝐄𝐧𝐠𝐚𝐠𝐞𝐦𝐞𝐦𝐞𝐧𝐭 𝐰𝐢𝐭𝐡 𝐀𝐈-𝐌𝐋 ¤(✭☆)¤")
 
 # st.markdown("""
 # <style>
@@ -81,14 +81,7 @@ st.title(" Improve Your Employee Engagement with AI - ML")
 # """, unsafe_allow_html=True)
 # st.markdown('<p class="big-font"> With Machine Learning, HR can find meanigful insightful about their employees, as opposed to relying on obsolete theories and generalizations?', 
 #     unsafe_allow_html=True)  
-st.success(""" ###### This Machine Learning model is built to analyze and gain insights on a number of critical issues in 6 main areas obtained from employee feedback:
-(1) Career Development
-(2) Management Support
-(3) Supervision & Working Environment
-(4) Comp & Benefits
-(5) Employee Engagement
-(6) Peer Relationships        
-            """ )
+st.info ("""  𝖢𝖺𝗋𝖾𝖾𝗋 𝖣𝖾𝗏𝖾𝗅𝗈𝗉𝗆𝖾𝗇𝗍 ♦♦ 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖲𝗎𝗉𝗉𝗈𝗋𝗍 ♦♦  𝖲𝗎𝗉𝖾𝗋𝗏𝗂𝗌𝗂𝗈𝗇 & 𝖶𝗈𝗋𝗄𝗂𝗇𝗀 𝖤𝗇𝗏𝗂𝗋𝗈𝗇𝗆𝖾𝗇𝗍 ♦♦ 𝖢𝗈𝗆𝗉 & 𝖡𝖾𝗇𝖾𝖿𝗂𝗍𝗌 ♦♦ 𝖤𝗆𝗉𝗅𝗈𝗒𝖾𝖾 𝖤𝗇𝗀𝖺𝗀𝖾𝗆𝖾𝗇𝗍 ♦♦ 𝖯𝖾𝖾𝗋 𝖱𝖾𝗅𝖺𝗍𝗂𝗈𝗇𝗌𝗁𝗂𝗉𝗌""" )
 
 dataset_len = len(dataset)
 questions = dataset.columns.value_counts().sum()
@@ -195,19 +188,19 @@ with st.container():
         st.write("Model")
         st.write(model)
         
-        #st.write([i for i in survey_cluster])
     
 
     with col2:            
 
         @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
-        #def kmeans_plot ():
+        
         def cluster_plot ():
+            
             fig, ax = plt.subplots(figsize =( 10, 8))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
             #plt.grid()
             plt.show()
-            plt.title("KMeans Cluster")
+            plt.title("Here you can see employees are grouped based on similar attributes or feedback", fontsize =16)
             return fig
         plot1 = cluster_plot()
         st.write(plot1)
