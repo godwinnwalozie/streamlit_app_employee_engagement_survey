@@ -140,13 +140,13 @@ with st.sidebar.expander("Expand to view the Questions responded to by the emplo
 
 def get_colors ():
     if cluster_size == 2:
-        s = ['black', 'red']
+        s = ['green', 'red']
     elif cluster_size == 3:
-        s = ['black', 'red','blue']
+        s = ['green', 'red','blue']
     elif cluster_size == 4:
-        s= ['black', 'red','blue','orange']
+        s= ['green', 'red','blue','orange']
     else:
-        s =['black', 'red','blue','orange', 'indigo']
+        s =['green', 'red','blue','orange', 'indigo']
 
     return s
 color = get_colors()
@@ -202,9 +202,11 @@ with st.container():
         def cluster_plot ():
             fig, ax = plt.subplots(figsize =( 10, 8))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
-            #plt.grid()
-            plt.show()
+            ax =sns.scatterplot(x = kmeans.cluster_centers_[:, 0], y= kmeans.cluster_centers_[:, 1], 
+                hue= range(cluster_size), palette=color, s=200, ec='black', marker = "*",  legend = False,ax=ax)
             plt.title("Here you can see employees are grouped based on similar attributes or feedback", fontsize =16)
+            plt.show()
+            
             return fig
         plot1 = cluster_plot()
         st.write(plot1)
