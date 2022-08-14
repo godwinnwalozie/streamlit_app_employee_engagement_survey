@@ -26,7 +26,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
         <style>
                 .css-18e3th9 {
-                    padding-top: 2rem;
+                    padding-top: 1rem;
                     padding-bottom: 0.3rem;
                 }
                 .css-hxt7ib {
@@ -82,7 +82,7 @@ st.write(" ##### Machine Learning Model : by Godwin Nwalozie")
 # """, unsafe_allow_html=True)
 # st.markdown('<p class="big-font"> With Machine Learning, HR can find meanigful insightful about their employees, as opposed to relying on obsolete theories and generalizations?', 
 #     unsafe_allow_html=True)  
-st.info ("""  𝖢𝖺𝗋𝖾𝖾𝗋 𝖣𝖾𝗏𝖾𝗅𝗈𝗉𝗆𝖾𝗇𝗍 ♦♦ 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖲𝗎𝗉𝗉𝗈𝗋𝗍 ♦♦  𝖲𝗎𝗉𝖾𝗋𝗏𝗂𝗌𝗂𝗈𝗇 & 𝖶𝗈𝗋𝗄𝗂𝗇𝗀 𝖤𝗇𝗏𝗂𝗋𝗈𝗇𝗆𝖾𝗇𝗍 ♦♦ 𝖢𝗈𝗆𝗉 & 𝖡𝖾𝗇𝖾𝖿𝗂𝗍𝗌 ♦♦ 𝖤𝗆𝗉𝗅𝗈𝗒𝖾𝖾 𝖤𝗇𝗀𝖺𝗀𝖾𝗆𝖾𝗇𝗍 ♦♦ 𝖯𝖾𝖾𝗋 𝖱𝖾𝗅𝖺𝗍𝗂𝗈𝗇𝗌𝗁𝗂𝗉𝗌""" )
+st.warning ("""  𝖢𝖺𝗋𝖾𝖾𝗋 𝖣𝖾𝗏𝖾𝗅𝗈𝗉𝗆𝖾𝗇𝗍 ♦♦ 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖲𝗎𝗉𝗉𝗈𝗋𝗍 ♦♦  𝖲𝗎𝗉𝖾𝗋𝗏𝗂𝗌𝗂𝗈𝗇 & 𝖶𝗈𝗋𝗄𝗂𝗇𝗀 𝖤𝗇𝗏𝗂𝗋𝗈𝗇𝗆𝖾𝗇𝗍 ♦♦ 𝖢𝗈𝗆𝗉 & 𝖡𝖾𝗇𝖾𝖿𝗂𝗍𝗌 ♦♦ 𝖤𝗆𝗉𝗅𝗈𝗒𝖾𝖾 𝖤𝗇𝗀𝖺𝗀𝖾𝗆𝖾𝗇𝗍 ♦♦ 𝖯𝖾𝖾𝗋 𝖱𝖾𝗅𝖺𝗍𝗂𝗈𝗇𝗌𝗁𝗂𝗉𝗌""" )
 
 dataset_len = len(dataset)
 questions = dataset.columns.value_counts().sum()
