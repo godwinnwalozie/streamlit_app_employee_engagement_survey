@@ -129,8 +129,8 @@ survey_cluster = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})
 dataset_with_label = pd.concat([dataset, pd.DataFrame({'clusters' : kmeans.labels_})], axis = 1)  
 
 
-st.sidebar.download_button("Download the training dataset)", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
-st.sidebar.download_button("Download the trained model(joblib)", b'lgr_model',file_name = 'model.joblib')
+st.sidebar.download_button("Download the training dataset with employees fitted in their clusters", data =dataset_with_label .to_csv(), file_name = 'engagement_survey.csv', mime ="text/csv")
+st.sidebar.download_button("Download the trained model (joblib)", b'lgr_model',file_name = 'model.joblib')
 
 
 with st.sidebar.expander("Expand to view the Questions responded to by the employees"):
