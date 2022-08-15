@@ -180,7 +180,7 @@ with st.container():
         
         st.set_option('deprecation.showPyplotGlobalUse', False)
         def analysis():
-            st.write(" ##### Random generated reports - based on selected cluster size")
+            st.write(" ##### Generated Random Reports - based on selected cluster size")
             fig, ax = plt.subplots(figsize =(8, 10))
             for c in survey_cluster.drop(['clusters','cluster'],axis =1).sample(axis =1):
                 grid = sns.FacetGrid(data = survey_cluster, col='clusters')
@@ -203,7 +203,7 @@ with st.container():
             fig, ax = plt.subplots(figsize =( 11, 9))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
             ax =sns.scatterplot(x = kmeans.cluster_centers_[:, 0], y= kmeans.cluster_centers_[:, 1], 
-                hue= range(cluster_size), palette=color, s=200, ec='black', marker = "*",  legend = False,ax=ax)
+                hue= range(cluster_size), palette=color, s=50, ec='black', linewidth=7,marker = "o",  legend = False,ax=ax)
             plt.title("Here you can see employees are grouped based on similar attributes or feedback", fontsize =16)
             plt.show()
             
