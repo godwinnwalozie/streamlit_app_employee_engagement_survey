@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
-from ipywidgets import interact
 from sklearn.preprocessing import StandardScaler
 import os
 import random
