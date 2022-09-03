@@ -62,7 +62,7 @@ def load_model():
     return model
 model = load_model()
 
-@st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True,ttl=24*3600))
+@st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True,ttl=24*3600)
 def load_dataset ():
     data= pd.read_csv((os.path.join(path,"cleaned_file.csv")))
     return data
