@@ -166,7 +166,7 @@ with st.container():
         st.markdown("")
         
         st.write(" ##### YellowBrick - KElbowVisualizer")  
-        @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
+        @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None},ttl=24*3600)
         def no_of_cluster ():
             fig, ax = plt.subplots(figsize =(8, 5))
             model = KMeans()
@@ -198,7 +198,7 @@ with st.container():
     with col2:            
         st.markdown("")
         st.write(" ##### KMeans Cluster") 
-        @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None})
+        @st.cache(hash_funcs={matplotlib.figure.Figure: lambda _: None},ttl=24*3600)
         def cluster_plot ():
             fig, ax = plt.subplots(figsize =( 11, 9))
             sns.scatterplot(data = pca_x_kmeans, x= 'PCA1', y='PCA2', palette = color, hue = 'clusters', ax= ax,s = 200)
