@@ -55,7 +55,8 @@ div.stButton > button:hover {
 
 
 path = os.path.abspath(os.path.dirname(__file__))
-@st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True)
+
+@st.cache(suppress_st_warning=True, allow_output_mutation=True, persist= True,ttl=24*3600)
 def load_model():
     model = joblib.load(os.path.join(path,"lgr_model.joblib"))
     return model
