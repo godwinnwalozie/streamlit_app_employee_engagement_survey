@@ -178,7 +178,7 @@ with st.container():
         
     
         
-        st.set_option('deprecation.showPyplotGlobalUse', False)
+          #st.set_option('deprecation.showPyplotGlobalUse', False)
         def analysis():
             st.write(" ##### Generated Random Reports - based on selected cluster size")
             fig, ax = plt.subplots(figsize =(8, 10))
